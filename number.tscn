@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bu3lnudga4wte" path="res://assets/circle.png" id="1_sxqpk"]
 
 [node name="Number" type="Node2D"]
+position = Vector2(25, 25)
 script = ExtResource("1_s787s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -4,5 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b2shc0maommp7" path="res://number.tscn" id="2_is0fv"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(50, 50)
 script = ExtResource("1_4v15d")
 number_scene = ExtResource("2_is0fv")

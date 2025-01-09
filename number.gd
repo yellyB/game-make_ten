@@ -1,8 +1,8 @@
 extends Node2D
 
 
-var random_number : int
+var number : int
 
-func set_number(number: int):
-  random_number = number
+func set_number(random_number: int):
+  number = random_number
   $BoxContainer/Label.text = str(number)
