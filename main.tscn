@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyb7u6swt4wof"]
+[gd_scene load_steps=4 format=3 uid="uid://cyb7u6swt4wof"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_4v15d"]
 [ext_resource type="PackedScene" uid="uid://b2shc0maommp7" path="res://number.tscn" id="2_is0fv"]
+[ext_resource type="PackedScene" uid="uid://n0oboimrmsbp" path="res://dragbox.tscn" id="3_1yiyi"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(50, 50)
 script = ExtResource("1_4v15d")
 number_scene = ExtResource("2_is0fv")
+
+[node name="Dragbox" parent="." instance=ExtResource("3_1yiyi")]

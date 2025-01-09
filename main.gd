@@ -2,19 +2,18 @@ extends Node2D
 
 
 @export var number_scene: PackedScene
+@onready var dragbox = $Dragbox
 
 var grid_size = 10
 var cell_size = grid_size + 50
-
-
-
-# Number 노드를 저장할 배열
 var number_nodes = []
-
 var is_dragging = false
 var drag_start_pos = Vector2.ZERO
 
+
 func _ready() -> void:
+  dragbox.visible = false
+  dragbox.z_index = 100
   for i in range(grid_size):
     var row = []
     for j in range(grid_size):
@@ -30,15 +29,24 @@ func _input(event) -> void:
     if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
       drag_start_pos = event.position
       is_dragging = true
+      dragbox.visible = true
+      dragbox.position = drag_start_pos
+      dragbox.size = Vector2.ZERO
+      
     elif event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
       is_dragging = false
+      dragbox.visible = false
 
   elif event is InputEventMouseMotion and is_dragging:
     var drag_position = event.position
     var grid_x = int((drag_position.x) / cell_size)
     var grid_y = int((drag_position.y) / cell_size)
-    
-    # 그리드 범위 내에 있을 때만
+    var rect_size = drag_position - drag_start_pos
+    dragbox.size = rect_size.abs()
+    dragbox.position = drag_start_pos + rect_size.min(Vector2.ZERO)  # 드래그 방향 반대일때 보정
+
     if grid_x >= 0 and grid_x < grid_size and grid_y >= 0 and grid_y < grid_size:
-      var dragged_number = number_nodes[grid_y * grid_size + grid_x]  # 해당 셀의 Number 노드 찾기
-      print("Dragged over Number: ", dragged_number.random_number)  # 예시로 랜덤 숫자 출력
+      var dragged_number = number_nodes[grid_y * grid_size + grid_x]
+      print("Dragged over Number: ", dragged_number.number)
+      
+      
